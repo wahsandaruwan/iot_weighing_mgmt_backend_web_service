@@ -25,7 +25,7 @@ const corsOptions = {
 };
 
 // ----------Common middleware----------
-app.use(cors(corsOptions));
+app.use(cors());
 // Accept json
 app.use(express.json());
 
