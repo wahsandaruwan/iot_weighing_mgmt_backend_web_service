@@ -118,6 +118,20 @@ const GetWeighingDeviceDetailsById = async (req, res) => {
   const { deviceId } = req.params;
   // console.log(mongoose.mongo.BSONPure.ObjectID.fromHexString(deviceId));
 
+  // Check if the WeighingDevice with the specified ID exists
+  const weighingDeviceExists = await WeighingDeviceModel.exists({
+    _id: deviceId,
+  });
+
+  if (!weighingDeviceExists) {
+    return res.status(404).json({
+      status: false,
+      error: {
+        message: "WeighingDevice not found with the specified ID.",
+      },
+    });
+  }
+
   try {
     const weighingDeviceData = await WeighingDeviceModel.aggregate([
       {
@@ -171,6 +185,20 @@ const GetWeighingDevicesDataById = async (req, res) => {
   // console.log(mongoose.mongo.BSONPure.ObjectID.fromHexString(deviceId));
 
   try {
+    // Check if the WeighingDevice with the specified ID exists
+    const weighingDeviceExists = await WeighingDeviceModel.exists({
+      _id: deviceId,
+    });
+
+    if (!weighingDeviceExists) {
+      return res.status(404).json({
+        status: false,
+        error: {
+          message: "WeighingDevice not found with the specified ID.",
+        },
+      });
+    }
+
     const weighingDeviceData = await WeighingDeviceModel.aggregate([
       {
         $match: {
@@ -211,6 +239,20 @@ const GetWeighingDevicesRecentDataById = async (req, res) => {
   // console.log(mongoose.mongo.BSONPure.ObjectID.fromHexString(deviceId));
 
   try {
+    // Check if the WeighingDevice with the specified ID exists
+    const weighingDeviceExists = await WeighingDeviceModel.exists({
+      _id: deviceId,
+    });
+
+    if (!weighingDeviceExists) {
+      return res.status(404).json({
+        status: false,
+        error: {
+          message: "WeighingDevice not found with the specified ID.",
+        },
+      });
+    }
+
     const weighingDeviceData = await WeighingDeviceModel.aggregate([
       {
         $match: {

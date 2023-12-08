@@ -1,5 +1,5 @@
 // ----------Custom libraries and modules----------
-const { WeighingDataModel } = require("../models");
+const { WeighingDataModel, WeighingDeviceModel } = require("../models");
 
 // ----------Conroller function to added new weighing data----------
 const CreateWeighingData = async (req, res) => {
@@ -15,6 +15,20 @@ const CreateWeighingData = async (req, res) => {
   } = req.query;
 
   try {
+    // Check if the WeighingDevice with the specified ID exists
+    const weighingDeviceExists = await WeighingDeviceModel.exists({
+      _id: weighingDeviceId,
+    });
+
+    if (!weighingDeviceExists) {
+      return res.status(404).json({
+        status: false,
+        error: {
+          message: "WeighingDevice not found with the specified ID.",
+        },
+      });
+    }
+
     // New WeighingData
     const newWeighingData = new WeighingDataModel({
       batteryPercentage,
