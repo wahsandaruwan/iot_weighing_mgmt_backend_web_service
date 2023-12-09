@@ -5,19 +5,19 @@ const { WeighingDataModel, WeighingDeviceModel } = require("../models");
 const CreateWeighingData = async (req, res) => {
   // Request body
   const {
-    batteryPercentage,
-    batteryVoltage,
-    totalWeight,
-    itemCount,
-    weighingDeviceId,
-    dateCreated,
-    timeCreated,
+    battery_percentage,
+    battery_voltage,
+    total_weight,
+    item_count,
+    id,
+    date_created,
+    time_created,
   } = req.query;
 
   try {
     // Check if the WeighingDevice with the specified ID exists
     const weighingDeviceExists = await WeighingDeviceModel.exists({
-      _id: weighingDeviceId,
+      _id: id,
     });
 
     if (!weighingDeviceExists) {
@@ -31,13 +31,13 @@ const CreateWeighingData = async (req, res) => {
 
     // New WeighingData
     const newWeighingData = new WeighingDataModel({
-      batteryPercentage,
-      batteryVoltage,
-      totalWeight,
-      itemCount,
-      weighingDeviceId,
-      dateCreated,
-      timeCreated,
+      batteryPercentage: battery_percentage,
+      batteryVoltage: battery_voltage,
+      totalWeight: total_weight,
+      itemCount: item_count,
+      weighingDeviceId: id,
+      dateCreated: date_created,
+      timeCreated: time_created,
     });
 
     // Save new WeighingData to the database
