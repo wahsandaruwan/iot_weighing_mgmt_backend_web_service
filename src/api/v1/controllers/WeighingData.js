@@ -1,5 +1,6 @@
 // ----------Custom libraries and modules----------
 const { WeighingDataModel, WeighingDeviceModel } = require("../models");
+const { convertDateFormat } = require("../helpers");
 
 // ----------Conroller function to added new weighing data----------
 const CreateWeighingData = async (req, res) => {
@@ -13,6 +14,8 @@ const CreateWeighingData = async (req, res) => {
     date_created,
     time_created,
   } = req.query;
+
+  const dateCreated = convertDateFormat(date_created);
 
   try {
     // Check if the WeighingDevice with the specified ID exists
@@ -36,7 +39,7 @@ const CreateWeighingData = async (req, res) => {
       totalWeight: total_weight,
       itemCount: item_count,
       weighingDeviceId: id,
-      dateCreated: date_created,
+      dateCreated,
       timeCreated: time_created,
     });
 
