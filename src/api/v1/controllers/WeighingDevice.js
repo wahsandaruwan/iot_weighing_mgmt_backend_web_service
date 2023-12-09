@@ -213,6 +213,13 @@ const GetWeighingDevicesDataById = async (req, res) => {
           as: "deviceData",
         },
       },
+      {
+        $project: {
+          _id: 1,
+          deviceData: { $reverseArray: "$deviceData" },
+          // Add other fields if needed
+        },
+      },
     ]);
     return res.status(200).json({
       status: true,
