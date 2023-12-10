@@ -4,7 +4,7 @@ const getDateTime = (inputDate) => {
 
   // Set the options for formatting the date
   const options = {
-    timeZone: "Asia/Colombo", // Set the timezone to Singapore
+    timeZone: "Asia/Singapore", // Set the timezone to Singapore
     year: "numeric",
     month: "numeric",
     day: "numeric",
