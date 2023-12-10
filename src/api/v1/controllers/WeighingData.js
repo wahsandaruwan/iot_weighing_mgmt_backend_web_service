@@ -9,6 +9,7 @@ const CreateWeighingData = async (req, res) => {
     req.query;
 
   const dateTime = getDateTime();
+  console.log(dateTime);
 
   try {
     // Check if the WeighingDevice with the specified ID exists
