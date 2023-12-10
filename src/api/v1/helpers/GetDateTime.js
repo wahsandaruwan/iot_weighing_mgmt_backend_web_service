@@ -1,4 +1,4 @@
-const getDateTime = (inputDate) => {
+const getDateTime = () => {
   // Get current date
   const currentDate = new Date();
 
@@ -14,13 +14,15 @@ const getDateTime = (inputDate) => {
     hour12: false, // Set to 24-hour format
   };
 
-  // Format date and time separately
-  const singaporeDate = currentDate.toLocaleDateString("en-US", options);
-  const singaporeTime = currentDate.toLocaleTimeString("en-US", options);
+  // Format date and time to Singapore timezone in 24-hour format
+  const singaporeDateTime = currentDate.toLocaleString("en-US", options);
+
+  // Splitting date and time based on the comma
+  const [datePart, timePart] = singaporeDateTime.split(", ");
 
   return {
-    date: singaporeDate,
-    time: singaporeTime,
+    date: datePart,
+    time: timePart,
   };
 };
 
