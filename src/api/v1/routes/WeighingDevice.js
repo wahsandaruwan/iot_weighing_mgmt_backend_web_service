@@ -10,6 +10,7 @@ const {
   GetWeighingDevicesRecentDataById,
   UpdateWeighingDevice,
   DeleteWeighingDevice,
+  GetAllDeviceDetails,
 } = require("../controllers");
 
 const { AuthenticateUser, AuthorizeUser } = require("../middlewares");
@@ -38,6 +39,7 @@ router.delete(
 // Get user by id
 router.get("/item_details/all", GetAllWeighingDevicesDetails);
 router.get("/item_details/one/:deviceId", GetWeighingDeviceDetailsById);
+router.get("/all/", GetAllDeviceDetails);
 router.get("/all/:deviceId", GetWeighingDevicesDataById);
 router.get("/one/:deviceId", GetWeighingDevicesRecentDataById);
 

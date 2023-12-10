@@ -2,6 +2,7 @@
 const { RegisterUser, LoginUser, GetUserById } = require("./User");
 const {
   CreateWeighingDevice,
+  GetAllDeviceDetails,
   GetAllWeighingDevicesDetails,
   GetWeighingDevicesDataById,
   UpdateWeighingDevice,
@@ -37,6 +38,7 @@ module.exports = {
   DeleteRefreshToken,
   GetUserInfoByToken,
   CreateWeighingDevice,
+  GetAllDeviceDetails,
   GetAllWeighingDevicesDetails,
   GetWeighingDevicesDataById,
   GetWeighingDeviceDetailsById,

@@ -112,6 +112,29 @@ const GetAllWeighingDevicesDetails = async (req, res) => {
   }
 };
 
+const GetAllDeviceDetails = async (req, res) => {
+  try {
+    // Fetch all devices from the WeighingDevices model
+    const devices = await WeighingDeviceModel.find();
+
+    return res.status(200).json({
+      status: true,
+      devices,
+      success: {
+        message: "Successfully fetched all device details!",
+      },
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({
+      status: false,
+      error: {
+        message: "Failed to fetch device details!",
+      },
+    });
+  }
+};
+
 // ----------Conroller function to get weighing device by id----------
 const GetWeighingDeviceDetailsById = async (req, res) => {
   // Request parameters
@@ -382,6 +405,7 @@ const DeleteWeighingDevice = async (req, res) => {
 
 module.exports = {
   CreateWeighingDevice,
+  GetAllDeviceDetails,
   GetAllWeighingDevicesDetails,
   GetWeighingDevicesDataById,
   UpdateWeighingDevice,
