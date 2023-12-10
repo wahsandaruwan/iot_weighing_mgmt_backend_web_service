@@ -2,7 +2,7 @@
 const ConnectDatabase = require("./ConnectDatabase");
 const { GenerateTokens, VerifyTokens } = require("./ManageTokens");
 const { FileUpload } = require("./DefineFileStorage");
-const { convertDateFormat } = require("./ConvertDate");
+const { getDateTime } = require("./GetDateTime");
 
 // ----------Exports----------
 module.exports = {
@@ -10,5 +10,5 @@ module.exports = {
   GenerateTokens,
   VerifyTokens,
   FileUpload,
-  convertDateFormat,
+  getDateTime,
 };
