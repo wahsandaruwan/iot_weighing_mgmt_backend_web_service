@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 // ----------User schema----------
 const WeighingDeviceSchema = new mongoose.Schema(
   {
-   
     title: {
       type: String,
       required: true,
