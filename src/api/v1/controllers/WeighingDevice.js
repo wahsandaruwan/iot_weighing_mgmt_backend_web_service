@@ -175,6 +175,7 @@ const GetWeighingDeviceDetailsById = async (req, res) => {
           title: 1, // Include the title field from WeighingDevice
           imageUrl: 1, // Include the imageUrl field from WeighingDevice
           userId: 1, // Include the userId field from WeighingDevice
+          dateCreated: 1,
           "itemDetails.title": 1, // Include the title field from Item
           "itemDetails.imageUrl": 1, // Include the imageUrl field from Item
           "itemDetails.weight": 1, // Include the weight field from Item
