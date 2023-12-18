@@ -815,6 +815,32 @@ const GetWeighingDevicesDataById = async (req, res) => {
     ];
 
     if (period === "daily") {
+      // const today = new Date();
+      // today.setHours(0, 0, 0, 0);
+
+      // aggregationPipeline.push(
+      //   {
+      //     $unwind: "$deviceData",
+      //   },
+      //   {
+      //     $match: {
+      //       "deviceData.createdAt": {
+      //         $gte: today,
+      //         $lt: new Date(today.getTime() + 24 * 60 * 60 * 1000),
+      //       },
+      //     },
+      //   },
+      //   {
+      //     $group: {
+      //       _id: "$_id",
+      //       title: { $first: "$title" },
+      //       imageUrl: { $first: "$imageUrl" },
+      //       userId: { $first: "$userId" },
+      //       deviceData: { $push: "$deviceData" },
+      //     },
+      //   }
+      // );
+
       const today = new Date();
       today.setHours(0, 0, 0, 0);
 
@@ -831,8 +857,27 @@ const GetWeighingDevicesDataById = async (req, res) => {
           },
         },
         {
+          $sort: {
+            "deviceData.createdAt": 1,
+          },
+        },
+        {
           $group: {
-            _id: "$_id",
+            _id: {
+              _id: "$_id",
+              hour: {
+                $hour: "$deviceData.createdAt",
+              },
+            },
+            title: { $first: "$title" },
+            imageUrl: { $first: "$imageUrl" },
+            userId: { $first: "$userId" },
+            deviceData: { $last: "$deviceData" },
+          },
+        },
+        {
+          $group: {
+            _id: "$_id._id",
             title: { $first: "$title" },
             imageUrl: { $first: "$imageUrl" },
             userId: { $first: "$userId" },
