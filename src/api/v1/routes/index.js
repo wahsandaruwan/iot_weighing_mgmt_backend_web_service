@@ -5,6 +5,7 @@ const WeighingDataRoutes = require("./WeighingData");
 const ItemRoutes = require("./item");
 const UserTokenRoutes = require("./UserToken");
 const FileRoutes = require("./File");
+const SummaryRoutes = require("./Summary");
 
 // ----------Exports----------
 module.exports = {
@@ -14,4 +15,5 @@ module.exports = {
   ItemRoutes,
   UserTokenRoutes,
   FileRoutes,
+  SummaryRoutes,
 };

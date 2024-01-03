@@ -6,31 +6,17 @@ const { WeighingDeviceModel } = require("../models");
 const CreateWeighingDevice = async (req, res) => {
   // Request body
   const {
-    key,
     title,
     imageUrl,
     assignedItem,
+    userId,
     dateCreated,
     timeCreated,
     dateUpdated,
     timeUpdated,
   } = req.body;
-  const { userId } = req.user;
 
   try {
-    // Check if email or phone number already exist
-    const WeighingDevice = await WeighingDeviceModel.findOne({
-      $or: [{ key }],
-    }).exec();
-    if (WeighingDevice) {
-      return res.status(400).json({
-        status: false,
-        error: {
-          message: "Weighing device key already exist!",
-        },
-      });
-    }
-
     // New WeighingDevice
     const newWeighingDevice = new WeighingDeviceModel({
       title,
@@ -66,10 +52,17 @@ const CreateWeighingDevice = async (req, res) => {
 
 // ----------Conroller function to get all WeighingDevices----------
 const GetAllWeighingDevicesDetails = async (req, res) => {
+  const { userId } = req.user;
+
   try {
     // const WeighingDevice = await WeighingDeviceModel.find().exec();
 
     const WeighingDevice = await WeighingDeviceModel.aggregate([
+      {
+        $match: {
+          userId: mongoose.Types.ObjectId(userId),
+        },
+      },
       {
         $lookup: {
           from: "items", // The name of the collection (Assuming it's named 'items')
@@ -81,7 +74,6 @@ const GetAllWeighingDevicesDetails = async (req, res) => {
       {
         $project: {
           _id: 1, // Exclude the default _id field
-
           title: 1, // Include the title field from WeighingDevice
           imageUrl: 1, // Include the imageUrl field from WeighingDevice
           userId: 1, // Include the userId field from WeighingDevice
