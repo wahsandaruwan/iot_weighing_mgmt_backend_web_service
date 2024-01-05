@@ -14,6 +14,7 @@ const {
   ItemRoutes,
   FileRoutes,
   SummaryRoutes,
+  NotificationRoutes,
 } = require("./api/v1/routes");
 
 // ----------Global instances----------
@@ -56,8 +57,11 @@ app.use("/api/usertokens", UserTokenRoutes);
 // File route
 app.use("/api/files", FileRoutes);
 
-// File route
+//Summary route
 app.use("/api/summary", SummaryRoutes);
+
+//Notification route
+app.use("/api/notification", NotificationRoutes);
 
 // Error route
 app.use((req, res) => {

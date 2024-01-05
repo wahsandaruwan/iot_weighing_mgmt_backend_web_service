@@ -38,6 +38,7 @@ const {
   getCustomerDeviceCount,
   getCountByDate,
 } = require("./Summary");
+const { SendNotification } = require("./Notification");
 
 // ----------Exports----------
 module.exports = {
@@ -68,4 +69,5 @@ module.exports = {
   getCounts,
   getCustomerDeviceCount,
   getCountByDate,
+  SendNotification,
 };
