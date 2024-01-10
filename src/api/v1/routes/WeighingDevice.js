@@ -21,7 +21,7 @@ const router = express.Router();
 // Add machine
 router.post(
   "/add-device",
-  AuthenticateUser,
+  // AuthenticateUser,
   // AuthorizeUser(["admin", "member"]),
   CreateWeighingDevice
 );
@@ -37,9 +37,9 @@ router.delete(
 );
 
 // Get user by id
-router.get("/item_details/all", GetAllWeighingDevicesDetails);
+router.get("/item_details/all", AuthenticateUser, GetAllWeighingDevicesDetails);
 router.get("/item_details/one/:deviceId", GetWeighingDeviceDetailsById);
-router.get("/all/", GetAllDeviceDetails);
+router.get("/all/", AuthenticateUser, GetAllDeviceDetails);
 router.get("/all/:deviceId", GetWeighingDevicesDataById);
 router.get("/one/:deviceId", GetWeighingDevicesRecentDataById);
 

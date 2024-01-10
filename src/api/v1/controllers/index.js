@@ -1,5 +1,10 @@
 // ----------Imports----------
-const { RegisterUser, LoginUser, GetUserById } = require("./User");
+const {
+  RegisterUser,
+  LoginUser,
+  getAllCustomers,
+  GetUserById,
+} = require("./User");
 const {
   CreateWeighingDevice,
   GetAllDeviceDetails,
@@ -28,11 +33,18 @@ const {
   GetUserInfoByToken,
 } = require("./UserToken");
 const { SaveFile } = require("./File");
+const {
+  getCounts,
+  getCustomerDeviceCount,
+  getCountByDate,
+} = require("./Summary");
+const { SendNotification } = require("./Notification");
 
 // ----------Exports----------
 module.exports = {
   RegisterUser,
   LoginUser,
+  getAllCustomers,
   GetUserById,
   GenerateAccessToken,
   DeleteRefreshToken,
@@ -54,4 +66,8 @@ module.exports = {
   Updateitem,
   Deleteitem,
   SaveFile,
+  getCounts,
+  getCustomerDeviceCount,
+  getCountByDate,
+  SendNotification,
 };

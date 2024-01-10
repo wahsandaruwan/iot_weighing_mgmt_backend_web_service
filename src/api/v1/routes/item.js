@@ -24,10 +24,10 @@ router.post(
 );
 
 // Update machine
-router.put("/update-device/:itemId", AuthenticateUser, Updateitem);
+router.put("/update-item/:itemId", AuthenticateUser, Updateitem);
 
 // Delete machine
-router.delete("/delete-device/:itemId", AuthenticateUser, Deleteitem);
+router.delete("/delete-item/:itemId", AuthenticateUser, Deleteitem);
 
 // Get user by id
 router.get("/get-all-items", AuthenticateUser, GetAllitems);

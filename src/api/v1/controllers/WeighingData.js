@@ -10,6 +10,15 @@ const CreateWeighingData = async (req, res) => {
 
   const dateTime = getDateTime();
 
+  // Ensure values are not less than 0
+  const sanitizedBatteryPercentage = Math.max(
+    0,
+    parseFloat(battery_percentage) || 0
+  );
+  const sanitizedBatteryVoltage = Math.max(0, parseFloat(battery_voltage) || 0);
+  const sanitizedTotalWeight = Math.max(0, parseFloat(total_weight) || 0);
+  const sanitizedItemCount = Math.max(0, parseInt(item_count) || 0);
+
   try {
     // Check if the WeighingDevice with the specified ID exists
     const weighingDeviceExists = await WeighingDeviceModel.exists({
@@ -27,10 +36,10 @@ const CreateWeighingData = async (req, res) => {
 
     // New WeighingData
     const newWeighingData = new WeighingDataModel({
-      batteryPercentage: battery_percentage,
-      batteryVoltage: battery_voltage,
-      totalWeight: total_weight,
-      itemCount: item_count,
+      batteryPercentage: sanitizedBatteryPercentage,
+      batteryVoltage: sanitizedBatteryVoltage,
+      totalWeight: sanitizedTotalWeight,
+      itemCount: sanitizedItemCount,
       weighingDeviceId: id,
       dateCreated: dateTime.date,
       timeCreated: dateTime.time,

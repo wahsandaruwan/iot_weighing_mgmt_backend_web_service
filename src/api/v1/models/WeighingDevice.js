@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 // ----------User schema----------
 const WeighingDeviceSchema = new mongoose.Schema(
   {
-   
     title: {
       type: String,
       required: true,
@@ -18,7 +17,7 @@ const WeighingDeviceSchema = new mongoose.Schema(
       default: 0,
     },
     userId: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
     },
     dateCreated: {

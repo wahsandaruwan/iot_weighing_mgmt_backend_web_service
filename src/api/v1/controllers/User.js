@@ -121,6 +121,35 @@ const LoginUser = async (req, res) => {
   }
 };
 
+// ----------Conroller function to get all user ----------
+const getAllCustomers = async (req, res) => {
+  try {
+    const customers = await User.aggregate([
+      {
+        $match: {
+          userType: "customer",
+        },
+      },
+    ]);
+
+    return res.status(200).json({
+      status: true,
+      customers,
+      success: {
+        message: "Successfully fetched the customers!",
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({
+      status: false,
+      error: {
+        message: "Failed to fetch the user!",
+      },
+    });
+  }
+};
+
 // ----------Conroller function to get user by id----------
 const GetUserById = async (req, res) => {
   // Request parameters
@@ -146,4 +175,4 @@ const GetUserById = async (req, res) => {
   }
 };
 
-module.exports = { RegisterUser, LoginUser, GetUserById };
+module.exports = { RegisterUser, LoginUser, getAllCustomers, GetUserById };
