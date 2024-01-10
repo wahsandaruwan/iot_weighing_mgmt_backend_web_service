@@ -36,7 +36,9 @@ app.use("/uploads", express.static("./uploads/"));
 
 // Base route
 app.get("/", (req, res) => {
-  res.status(200).json({ success: { message: `Welcome to the server!` } });
+  res
+    .status(200)
+    .json({ success: { message: `Welcome to the production server!` } });
 });
 
 // User route
